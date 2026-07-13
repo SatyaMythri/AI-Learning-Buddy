@@ -3,10 +3,12 @@ import streamlit as st
 from google import genai
 
 # Replace with your Gemini API Key
-api_key = os.getenv("GEMINI_API_KEY")
+#api_key = os.getenv("GEMINI_API_KEY")
 
 #st.write("Key loaded:", api_key is not None)
-client = genai.Client(api_key="GEMINI_API_KEY")
+client = genai.Client(
+    api_key=os.environ["GEMINI_API_KEY"]
+)
 st.set_page_config(page_title="AI Learning Buddy", page_icon="🎓")
 
 st.title("🎓 AI Learning Buddy")
