@@ -4,11 +4,10 @@ from google import genai
 
 # Replace with your Gemini API Key
 client = genai.Client(api_key="GEMINI_API_KEY")
-st.write("Key loaded:", api_key is not None)
 st.set_page_config(page_title="AI Learning Buddy", page_icon="🎓")
 
 st.title("🎓 AI Learning Buddy")
-
+st.write("Key loaded:", api_key is not None)
 topic = st.text_input("Enter a Topic")
 
 option = st.selectbox(
