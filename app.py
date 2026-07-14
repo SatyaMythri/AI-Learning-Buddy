@@ -41,9 +41,11 @@ if st.button("Generate"):
 
         try:
 
-            response = client.models.generate_content(
+            response = client.chat.completions.create(
                 model="llama-3.3-70b-versatile",
-                contents=prompt
+                messages=[
+                    {"role": "user", "content": prompt}
+                ]
             )
 
             st.subheader("Result")
