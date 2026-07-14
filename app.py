@@ -40,7 +40,7 @@ if st.button("Generate"):
 
         try:
             response = client.models.generate_content(
-                model="gemini-pro-latest",
+                model="gemini-3.1-pro-preview",
                 contents=prompt
             )
 
