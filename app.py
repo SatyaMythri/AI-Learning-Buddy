@@ -2,16 +2,21 @@ import streamlit as st
 import os
 from groq import Groq
 
-# Gemini Client
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+# Initialize Groq Client
+client = Groq(
+    api_key=os.getenv("GROQ_API_KEY")
+)
 
+# Streamlit Page Configuration
 st.set_page_config(
     page_title="AI Learning Buddy",
     page_icon="🎓"
 )
 
 st.title("🎓 AI Learning Buddy")
+st.write("Learn any topic with AI!")
 
+# User Input
 topic = st.text_input("Enter a Topic")
 
 option = st.selectbox(
@@ -23,6 +28,7 @@ option = st.selectbox(
     ]
 )
 
+# Generate Button
 if st.button("Generate"):
 
     if topic.strip() == "":
@@ -36,7 +42,7 @@ if st.button("Generate"):
         elif option == "Real-Life Example":
             prompt = f"Give one simple real-life example of {topic}."
 
-        elif option == "Generate Quiz":
+        else:
             prompt = f"Create 5 multiple choice questions on {topic} with answers."
 
         try:
@@ -44,11 +50,17 @@ if st.button("Generate"):
             response = client.chat.completions.create(
                 model="llama-3.3-70b-versatile",
                 messages=[
-                    {"role": "user", "content": prompt}
-                ]
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                temperature=0.7,
+                max_tokens=1024
             )
 
             answer = response.choices[0].message.content
+
             st.subheader("Result")
             st.write(answer)
 
