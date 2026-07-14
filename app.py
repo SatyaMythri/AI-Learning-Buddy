@@ -42,7 +42,7 @@ if st.button("Generate"):
         try:
 
             response = client.models.generate_content(
-                model="gemini-2.5-flash",
+                model="llama-3.3-70b-versatile",
                 contents=prompt
             )
 
