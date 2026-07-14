@@ -48,8 +48,9 @@ if st.button("Generate"):
                 ]
             )
 
+            answer = response.choices[0].message.content
             st.subheader("Result")
-            st.write(response.text)
+            st.write(answer)
 
         except Exception as e:
             st.error(f"Error: {e}")
